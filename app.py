@@ -1,5 +1,5 @@
 from flask import Flask, render_template
-from models import db
+from models import db, Person
 from flask_migrate import Migrate, upgrade
 from random import randint
 
@@ -12,7 +12,8 @@ migrate = Migrate(app,db)
 
 @app.route("/")
 def indexPage():
-    return render_template('startPage.html')
+    allaPersoner = Person.query.all()
+    return render_template('startPage.html', allaPersoner=allaPersoner)
 
 @app.route("/hej")
 def hejPage():
