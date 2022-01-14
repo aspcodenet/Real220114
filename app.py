@@ -13,7 +13,9 @@ migrate = Migrate(app,db)
 @app.route("/")
 def indexPage():
     allaPersoner = Person.query.all()
-    return render_template('startPage.html', allaPersoner=allaPersoner)
+    #antalPersoner = Person count???
+    #totSaldo = 
+    return render_template('startPage.html', allaPersoner=allaPersoner, antalPersoner=12, totSaldo=999)
 
 @app.route("/person/<id>")
 def personPage(id):
