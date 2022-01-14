@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from models import db
 from flask_migrate import Migrate, upgrade
 from random import randint
@@ -12,13 +12,11 @@ migrate = Migrate(app,db)
 
 @app.route("/")
 def indexPage():
-    tal = randint(0,10000)
-    return f"<html><body><h1>Startsidan</h1><p>{tal}</p></body></html>"
-
+    return render_template('startPage.html')
 
 @app.route("/hej")
 def hejPage():
-    return "<html><body><h1>Hej hej</h1></body></html>"
+    return render_template('hej.html')
 
 @app.route("/hopp")
 def hoppPage():

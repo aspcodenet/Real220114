@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" asp-append-version="true">
+    <link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}" asp-append-version="true">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <title>Title</title>
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
 </head>
 <body>
     
@@ -18,7 +21,6 @@
             </div>
             <div class="header__avatar">
                 
-                <partial name="_LoginPartial"/>
 
             </div>
           </header>
@@ -47,7 +49,8 @@
               </ul>
           </aside>        
         <main class="main">
-            Hello
+            {% block content %}
+            {% endblock %}
         </main>
         <footer class="footer">
             <div class="footer__copyright">&copy; 2021 Systementor AB</div>
