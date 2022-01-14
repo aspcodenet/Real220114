@@ -15,9 +15,10 @@ def indexPage():
     allaPersoner = Person.query.all()
     return render_template('startPage.html', allaPersoner=allaPersoner)
 
-@app.route("/hej")
-def hejPage():
-    return render_template('hej.html')
+@app.route("/person/<id>")
+def personPage(id):
+    person = Person.query.filter(Person.id == id).first()
+    return render_template('person.html', name=person.namn)
 
 @app.route("/hopp")
 def hoppPage():
