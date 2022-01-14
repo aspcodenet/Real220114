@@ -26,7 +26,7 @@ Startsidan
                     <td>{{ person.postalcode }}</td>
                     <td>{{ person.city }}</td>
                     <td>
-                        <a href="#"><i class='bx bx-edit'></i></a>
+                        <a href="{{ url_for('personPage', id=person.id )  }}"><i class='bx bx-edit'></i></a>
                     </td>
                 </tr>
             {% endfor %}

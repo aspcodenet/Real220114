@@ -18,7 +18,7 @@ def indexPage():
 @app.route("/person/<id>")
 def personPage(id):
     person = Person.query.filter(Person.id == id).first()
-    return render_template('person.html', name=person.namn)
+    return render_template('person.html', person=person)
 
 @app.route("/hopp")
 def hoppPage():
