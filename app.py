@@ -4,8 +4,8 @@ from flask_migrate import Migrate, upgrade
 
 
 app = Flask(__name__)
-app.config.from_object('config')
-#app.config['SQLALCHEMY_DATABASE_URI'] =  'mysql+mysqlconnector://root:password@localhost/db1'    # File-based SQL database
+app.config.from_object('config.ConfigDebug')
+#app.config['SQLALCHEMY_DATABASE_URI'] =  'mysql+mysqlconnector://root:password@localhost/inlamning'    # File-based SQL database
 
 db.app = app
 db.init_app(app)
