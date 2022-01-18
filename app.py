@@ -20,11 +20,20 @@ def hejPage():
 
 @app.route("/")
 def indexPage():
+    activePage = "startPage"
     allaPersoner = Person.query.all()
     #antalPersoner = Person count???
     #totSaldo = 
-    return render_template('startPage.html', allaPersoner=allaPersoner, antalPersoner=12, totSaldo=999)
+    return render_template('startPage.html', antalPersoner=12, totSaldo=999,activePage=activePage)
 
+
+@app.route("/personer")
+def personerPage():
+    activePage = "personerPage"
+    allaPersoner = Person.query.all()
+    #antalPersoner = Person count???
+    #totSaldo = 
+    return render_template('personer.html', allaPersoner=allaPersoner, activePage=activePage)
 
 
 @app.route("/person/<id>")

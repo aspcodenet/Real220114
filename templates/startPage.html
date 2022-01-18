@@ -1,4 +1,4 @@
-{% extends "basetemplateadmin.html" %}
+{% extends "basetemplate.html" %}
 
 {% block title %}
 Startsidan
@@ -10,35 +10,6 @@ Startsidan
 
 <h2>Antal personer i databasen: {{antalPersoner}}</h2>
 <h2>Totalt saldo: {{totSaldo}}</h2>
-
-<div class="card">
-    <div class="card-header">
-        <h1>Alla personer</h1>
-    </div>
-    <div class="card-body">
-        <table class="table">
-            <tr>
-                <th>Namn</th>
-                <th>Postnummer</th>
-                <th>Stad</th>
-                <th></th>
-            </tr>
-            {% for person in allaPersoner %}      
-                <tr>
-                    <td>{{ person.namn }}</td>
-                    <td>{{ person.postalcode }}</td>
-                    <td>{{ person.city }}</td>
-                    <td>
-                        <a href="{{ url_for('personPage', id=person.id )  }}"><i class='bx bx-edit'></i></a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
-        
-            <a class="btn" href="#">Create new</a>
-
-    </div>
-</div>
 
 
 
