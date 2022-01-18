@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from models import db, Person
 from flask_migrate import Migrate, upgrade
 from random import randint
@@ -29,10 +29,37 @@ def indexPage():
 
 @app.route("/personer")
 def personerPage():
+    
+    sortColumn = request.args.get('sortColumn')
+    sortOrder = request.args.get('sortOrder')
+
+    if sortColumn == "" or sortColumn == None:
+        sortColumn = "namn"
+
+    if sortOrder == "" or sortOrder == None:
+        sortOrder = "asc"
+
     activePage = "personerPage"
-    allaPersoner = Person.query.all()
-    #antalPersoner = Person count???
-    #totSaldo = 
+    allaPersoner = Person.query
+
+    if sortColumn == "namn":
+        if sortOrder == "desc":
+            allaPersoner = allaPersoner.order_by(Person.namn.desc())
+        else:
+            allaPersoner = allaPersoner.order_by(Person.namn.asc())
+
+    if sortColumn == "city":
+        if sortOrder == "desc":
+            allaPersoner = allaPersoner.order_by(Person.city.desc())
+        else:
+            allaPersoner = allaPersoner.order_by(Person.city.asc())
+
+    if sortColumn == "postal":
+        if sortOrder == "desc":
+            allaPersoner = allaPersoner.order_by(Person.postalcode.desc())
+        else:
+            allaPersoner = allaPersoner.order_by(Person.postalcode.asc())
+
     return render_template('personer.html', allaPersoner=allaPersoner, activePage=activePage)
 
 

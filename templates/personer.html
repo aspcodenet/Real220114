@@ -16,16 +16,28 @@ Startsidan
         <table class="table">
             <tr>
                 <th>Namn
-                    <i class='bx bx-up-arrow-alt'></i>
-                    <i class='bx bx-down-arrow-alt' ></i>
+                    <a href="{{  url_for('personerPage',sortColumn='namn',sortOrder='asc' ) }}">
+                        <i class='bx bx-up-arrow-alt'></i>
+                    </a>
+                    <a href="{{  url_for('personerPage',sortColumn='namn',sortOrder='desc' ) }}">
+                        <i class='bx bx-down-arrow-alt' ></i>
+                    </a>
                 </th>
                 <th>Postnummer
-                    <i class='bx bx-up-arrow-alt'></i>
-                    <i class='bx bx-down-arrow-alt' ></i>
+                    <a href="{{  url_for('personerPage',sortColumn='postal',sortOrder='asc' ) }}">
+                        <i class='bx bx-up-arrow-alt'></i>
+                    </a>
+                    <a href="{{  url_for('personerPage',sortColumn='postal',sortOrder='desc' ) }}">
+                        <i class='bx bx-down-arrow-alt' ></i>
+                    </a>
                 </th>
                 <th>Stad
-                    <i class='bx bx-up-arrow-alt'></i>
-                    <i class='bx bx-down-arrow-alt' ></i>
+                    <a href="{{  url_for('personerPage',sortColumn='city',sortOrder='asc' ) }}">
+                        <i class='bx bx-up-arrow-alt'></i>
+                    </a>
+                    <a href="{{  url_for('personerPage',sortColumn='city',sortOrder='desc' ) }}">
+                        <i class='bx bx-down-arrow-alt' ></i>
+                    </a>
                 </th>
                 <th></th>
             </tr>
