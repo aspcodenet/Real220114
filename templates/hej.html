@@ -6,11 +6,49 @@ Hej
 
 
 {% block content %}
+
+<table id="playlist">
+    <tbody>
+        {% set oddOrEven = "odd" %}      
+        {% for namn in lista %}      
+
+        <tr class="{{ oddOrEven }}">
+                <td>
+                {{ namn }}
+                </td>
+            </tr>
+            {% if oddOrEven == "odd"  %}
+            {%      set oddOrEven = "even" %}
+            {% endif  %}
+
+        {% endfor %}        
+    
+
+<!-- {% for namn in lista %}      
+    <tr class="{{ loop.cycle('odd', 'even') }}">
+            <td>
+            {{ namn }}
+            </td>
+        </tr>
+{% endfor %}         -->
+    </tbody>
+</table>
+
+
+
+{% if inloggad %}
 <ul>
-    <li>A</li>
-    <li>B</li>
-    <li>C</li>
+    <li>{{ name }}</li>
+    <li></li>
+    <li>}</li>
 </ul>
+{% else %}
+    <h2>Men logga in nu för 17</h2>
+{% endif %}
+
 
 {% endblock %}
 
+{% block footer %}
+en anna footer
+{% endblock %}
