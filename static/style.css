@@ -271,3 +271,12 @@ small {
 td i {
     font-size: 30px;
 }
+
+
+
+#playlist tbody tr.even td {
+    background-color: #eee;
+  }
+  #playlist tbody tr.odd  td {
+    background-color: #fff;
+  }

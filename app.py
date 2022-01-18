@@ -10,6 +10,14 @@ db.app = app
 db.init_app(app)
 migrate = Migrate(app,db)
 
+@app.route("/hej")
+def hejPage():
+    # på riktigt kolla om inloggad osv sov
+    lista = ["Stefan", "Oliver", "Josefine"]
+    return render_template('hej.html', inloggad=True, lista=lista,age=49, name="Stefan")
+
+
+
 @app.route("/")
 def indexPage():
     allaPersoner = Person.query.all()
@@ -17,10 +25,14 @@ def indexPage():
     #totSaldo = 
     return render_template('startPage.html', allaPersoner=allaPersoner, antalPersoner=12, totSaldo=999)
 
+
+
 @app.route("/person/<id>")
 def personPage(id):
     person = Person.query.filter(Person.id == id).first()
-    return render_template('person.html', person=person)
+    return render_template('person.html',person=person, name="Stefan")
+
+
 
 @app.route("/hopp")
 def hoppPage():
