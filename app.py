@@ -39,8 +39,8 @@ def personerPage():
     activePage = "personerPage"
     allaPersoner = Person.query.filter(
         Person.namn.like('%' + searchWord + '%') | 
-        Person.city.like('%' + searchWord + '%') 
-         )
+        Person.city.like('%' + searchWord + '%')  | 
+        Person.id.like(searchWord)          )
 
     if sortColumn == "namn":
         if sortOrder == "desc":
