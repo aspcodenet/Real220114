@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from models import db, Person
+from models import db, Person, seedData
 from flask_migrate import Migrate, upgrade
 from random import randint
 
@@ -37,7 +37,10 @@ def personerPage():
     searchWord = request.args.get('q','')
 
     activePage = "personerPage"
-    allaPersoner = Person.query.filter(Person.namn.like('%' + searchWord + '%'))
+    allaPersoner = Person.query.filter(
+        Person.namn.like('%' + searchWord + '%') | 
+        Person.city.like('%' + searchWord + '%') 
+         )
 
     if sortColumn == "namn":
         if sortOrder == "desc":
@@ -110,6 +113,7 @@ def personerPage2():
 if __name__  == "__main__":
     with app.app_context():
         upgrade()
+        seedData()
     app.run()
 
 
