@@ -7,6 +7,7 @@ Startsidan
 
 {% block content %}
 
+Visar sidan {{ page }} av totalt {{ pages }}
 
 <div class="card">
     <div class="card-header">
@@ -55,8 +56,34 @@ Startsidan
                     </td>
                 </tr>
             {% endfor %}
+            <tfooter>
+                <tr>
+                    <td>
+                        {% if has_prev %}
+                            <a class="btn" href="{{ url_for('personerPage', page=page-1) }}">
+                                Prev                                
+                            </a>
+                        {% endif %}
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    <td>
+                        {% if has_next %}
+                            <a class="btn" href="{{ url_for('personerPage', page=page+1) }}">
+                                Next                                
+                            </a>
+                        {% endif %}
+
+                    </td>
+                </tr>
+            </tfooter>
         </table>
         
+
+
             <a class="btn" href="#">Create new</a>
 
     </div>

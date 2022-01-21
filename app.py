@@ -33,6 +33,7 @@ def personerPage():
     
     sortColumn = request.args.get('sortColumn', 'namn')
     sortOrder = request.args.get('sortOrder', 'asc')
+    page = int(request.args.get('page', 1))
 
     searchWord = request.args.get('q','')
 
@@ -60,7 +61,16 @@ def personerPage():
         else:
             allaPersoner = allaPersoner.order_by(Person.postalcode.asc())
 
-    return render_template('personer.html', allaPersoner=allaPersoner, activePage=activePage)
+    paginationObject = allaPersoner.paginate(page,20,False)
+
+
+    return render_template('personer.html', 
+            allaPersoner=paginationObject.items, 
+            page=page,
+            has_next=paginationObject.has_next,
+            has_prev=paginationObject.has_prev, 
+            pages=paginationObject.pages, 
+            activePage=activePage)
 
 @app.route("/person/<id>")
 def personPage(id):
