@@ -13,7 +13,7 @@ Visar sidan {{ page }} av totalt {{ pages }}
     <div class="card-header">
         <h1>Alla personer</h1>
         Sök: <form method="get">
-                <input type=text placeholder="search" name="q">
+                <input type=text placeholder="search" value="{{ q }}" name="q">
                 <input class="btn" type=submit value="Sök">
             </form>
     </div>
@@ -21,26 +21,26 @@ Visar sidan {{ page }} av totalt {{ pages }}
         <table class="table">
             <tr>
                 <th>Namn
-                    <a href="{{  url_for('personerPage',sortColumn='namn',sortOrder='asc' ) }}">
+                    <a href="{{  url_for('personerPage',sortColumn='namn',sortOrder='asc', q=q ) }}">
                         <i class='bx bx-up-arrow-alt'></i>
                     </a>
-                    <a href="{{  url_for('personerPage',sortColumn='namn',sortOrder='desc' ) }}">
+                    <a href="{{  url_for('personerPage',sortColumn='namn',sortOrder='desc',q=q ) }}">
                         <i class='bx bx-down-arrow-alt' ></i>
                     </a>
                 </th>
                 <th>Postnummer
-                    <a href="{{  url_for('personerPage',sortColumn='postal',sortOrder='asc' ) }}">
+                    <a href="{{  url_for('personerPage',sortColumn='postal',sortOrder='asc',q=q ) }}">
                         <i class='bx bx-up-arrow-alt'></i>
                     </a>
-                    <a href="{{  url_for('personerPage',sortColumn='postal',sortOrder='desc' ) }}">
+                    <a href="{{  url_for('personerPage',sortColumn='postal',sortOrder='desc',q=q ) }}">
                         <i class='bx bx-down-arrow-alt' ></i>
                     </a>
                 </th>
                 <th>Stad
-                    <a href="{{  url_for('personerPage',sortColumn='city',sortOrder='asc' ) }}">
+                    <a href="{{  url_for('personerPage',sortColumn='city',sortOrder='asc',q=q ) }}">
                         <i class='bx bx-up-arrow-alt'></i>
                     </a>
-                    <a href="{{  url_for('personerPage',sortColumn='city',sortOrder='desc' ) }}">
+                    <a href="{{  url_for('personerPage',sortColumn='city',sortOrder='desc',q=q ) }}">
                         <i class='bx bx-down-arrow-alt' ></i>
                     </a>
                 </th>
@@ -60,7 +60,7 @@ Visar sidan {{ page }} av totalt {{ pages }}
                 <tr>
                     <td>
                         {% if has_prev %}
-                            <a class="btn" href="{{ url_for('personerPage', page=page-1) }}">
+                            <a class="btn" href="{{ url_for('personerPage', page=page-1, sortColumn=sortColumn, sortOrder=sortOrder, q=q ) }}">
                                 Prev                                
                             </a>
                         {% endif %}
@@ -72,7 +72,7 @@ Visar sidan {{ page }} av totalt {{ pages }}
                     <td>
                     <td>
                         {% if has_next %}
-                            <a class="btn" href="{{ url_for('personerPage', page=page+1) }}">
+                            <a class="btn" href="{{ url_for('personerPage', page=page+1, sortColumn=sortColumn, sortOrder=sortOrder,q=q) }}">
                                 Next                                
                             </a>
                         {% endif %}
