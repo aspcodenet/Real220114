@@ -26,21 +26,18 @@ def indexPage():
     #totSaldo = 
     return render_template('startPage.html', antalPersoner=12, totSaldo=999,activePage=activePage)
 
-
+# To improve: get med defaultvalue
+# search!
 @app.route("/personer")
 def personerPage():
     
-    sortColumn = request.args.get('sortColumn')
-    sortOrder = request.args.get('sortOrder')
+    sortColumn = request.args.get('sortColumn', 'namn')
+    sortOrder = request.args.get('sortOrder', 'asc')
 
-    if sortColumn == "" or sortColumn == None:
-        sortColumn = "namn"
-
-    if sortOrder == "" or sortOrder == None:
-        sortOrder = "asc"
+    searchWord = request.args.get('q','')
 
     activePage = "personerPage"
-    allaPersoner = Person.query
+    allaPersoner = Person.query.filter(Person.namn.like('%' + searchWord + '%'))
 
     if sortColumn == "namn":
         if sortOrder == "desc":
@@ -62,7 +59,6 @@ def personerPage():
 
     return render_template('personer.html', allaPersoner=allaPersoner, activePage=activePage)
 
-
 @app.route("/person/<id>")
 def personPage(id):
     person = Person.query.filter(Person.id == id).first()
@@ -73,6 +69,42 @@ def personPage(id):
 @app.route("/hopp")
 def hoppPage():
     return "<html><body><h1>Hopp</h1></body></html>"
+
+@app.route("/personer2")
+def personerPage2():
+    
+    sortColumn = request.args.get('sortColumn',"namn")
+    sortOrder = request.args.get('sortOrder', "asc")
+    page = request.args.get('page', 1, type=int)
+
+    activePage = "personerPage"
+    allaPersoner = Person.query
+
+
+    if sortColumn == "namn":
+        if sortOrder == "desc":
+            allaPersoner = allaPersoner.order_by(Person.namn.desc())
+        else:
+            allaPersoner = allaPersoner.order_by(Person.namn.asc())
+
+    if sortColumn == "city":
+        if sortOrder == "desc":
+            allaPersoner = allaPersoner.order_by(Person.city.desc())
+        else:
+            allaPersoner = allaPersoner.order_by(Person.city.asc())
+
+    if sortColumn == "postal":
+        if sortOrder == "desc":
+            allaPersoner = allaPersoner.order_by(Person.postalcode.desc())
+        else:
+            allaPersoner = allaPersoner.order_by(Person.postalcode.asc())
+
+    paginationObject = allaPersoner.paginate(page,20,False)
+
+    return render_template('personer.html', 
+                    allaPersoner=paginationObject.items, 
+            activePage=activePage)
+
 
 
 if __name__  == "__main__":
