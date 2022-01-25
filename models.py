@@ -18,6 +18,7 @@ def seedData():
         person.postalcode, person.city, _  = barnum.create_city_state_zip()
         namn1, namn2 = barnum.create_name()
         person.namn = namn1 + " " + namn2
+        antal = antal + 1
         db.session.add(person)
         db.session.commit()        
 
